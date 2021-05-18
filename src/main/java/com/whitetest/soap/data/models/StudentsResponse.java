@@ -8,6 +8,8 @@
 
 package com.whitetest.soap.data.models;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -25,8 +27,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="studentId" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
- *         &lt;element name="examCode" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="students" type="{com/whitetest/soap/data/models}Student" maxOccurs="unbounded"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -37,54 +38,41 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "studentId",
-    "examCode"
+    "students"
 })
-@XmlRootElement(name = "StudentRequest")
-public class StudentRequest {
+@XmlRootElement(name = "StudentsResponse")
+public class StudentsResponse {
 
-    protected int studentId;
     @XmlElement(required = true)
-    protected String examCode;
+    protected List<Student> students;
 
     /**
-     * Gets the value of the studentId property.
+     * Gets the value of the students property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the students property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getStudents().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Student }
+     * 
      * 
      */
-    public int getStudentId() {
-        return studentId;
-    }
-
-    /**
-     * Sets the value of the studentId property.
-     * 
-     */
-    public void setStudentId(int value) {
-        this.studentId = value;
-    }
-
-    /**
-     * Gets the value of the examCode property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getExamCode() {
-        return examCode;
-    }
-
-    /**
-     * Sets the value of the examCode property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setExamCode(String value) {
-        this.examCode = value;
+    public List<Student> getStudents() {
+        if (students == null) {
+            students = new ArrayList<Student>();
+        }
+        return this.students;
     }
 
 }

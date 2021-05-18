@@ -33,6 +33,20 @@
 </xsd:sequence>
 </xsd:complexType>
 </xsd:element>
+<xsd:element name="StudentsRequest">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element name="students" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="StudentsResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" name="students" type="tns:Student"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
 <xsd:complexType name="Student">
 <xsd:sequence>
 <xsd:element name="id" type="xsd:int"/>
@@ -61,16 +75,26 @@
 <wsdl:message name="ExamsResponse">
 <wsdl:part element="tns:ExamsResponse" name="ExamsResponse"> </wsdl:part>
 </wsdl:message>
+<wsdl:message name="StudentsRequest">
+<wsdl:part element="tns:StudentsRequest" name="StudentsRequest"> </wsdl:part>
+</wsdl:message>
 <wsdl:message name="StudentRequest">
 <wsdl:part element="tns:StudentRequest" name="StudentRequest"> </wsdl:part>
 </wsdl:message>
 <wsdl:message name="WhiteTestResponse">
 <wsdl:part element="tns:WhiteTestResponse" name="WhiteTestResponse"> </wsdl:part>
 </wsdl:message>
+<wsdl:message name="StudentsResponse">
+<wsdl:part element="tns:StudentsResponse" name="StudentsResponse"> </wsdl:part>
+</wsdl:message>
 <wsdl:portType name="WhiteTestCheck">
 <wsdl:operation name="Exams">
 <wsdl:input message="tns:ExamsRequest" name="ExamsRequest"> </wsdl:input>
 <wsdl:output message="tns:ExamsResponse" name="ExamsResponse"> </wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="Students">
+<wsdl:input message="tns:StudentsRequest" name="StudentsRequest"> </wsdl:input>
+<wsdl:output message="tns:StudentsResponse" name="StudentsResponse"> </wsdl:output>
 </wsdl:operation>
 <wsdl:operation name="Student">
 <wsdl:input message="tns:StudentRequest" name="StudentRequest"> </wsdl:input>
@@ -87,6 +111,15 @@
 <soap:body use="literal"/>
 </wsdl:input>
 <wsdl:output name="ExamsResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="Students">
+<soap:operation soapAction=""/>
+<wsdl:input name="StudentsRequest">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="StudentsResponse">
 <soap:body use="literal"/>
 </wsdl:output>
 </wsdl:operation>
