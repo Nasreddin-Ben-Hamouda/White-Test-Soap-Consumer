@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>TekUp White Tests</title>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link"  th:href="@{/tekup/allWhiteTests}">Exams </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" th:href="@{/tekup/checkWhiteTest}">Check Exam <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="card" style="width:50%;height:400px;margin-top:5%;margin-left:24%">
+  <div class="card-header">
+    Check White Test
+  </div>
+  <div class="card-body" style="margin-top:5%">
+ 
+	<form th:action="@{/tekup/checkWhiteTest}" method="post" th:object="${request}">
+	  <div class="form-group">
+	    <label for="studentID">Student ID</label>
+	    <input type="number" min=1 th:field="*{studentId}" class="form-control"  id="studentID" aria-describedby="emailHelp" placeholder="Enter Student Id">
+	  </div>
+	  <div class="form-group">
+	    <label for="examCode">Exam Code</label>
+	    <input type="text" th:field="*{examCode}" class="form-control" id="examCode" placeholder="Enter Exam Code" required="required">
+	  </div>
+	  <button type="submit" class="btn btn-primary">Check</button>
+   </form>
+  </div>
+</div>
+
+
+<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

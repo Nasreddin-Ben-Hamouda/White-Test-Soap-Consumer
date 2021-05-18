@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>TekUp White Tests</title>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item ">
+        <a class="nav-link"  th:href="@{/tekup/allWhiteTests}">Exams <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" th:href="@{/tekup/checkWhiteTest}">Check Exam</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="card" style="width:50%;margin-top:3%;margin-left:24%">
+  <div class="card-header">
+    White Test Response
+  </div>
+  <div class="card-body" >
+ 		<div class="alert alert-danger" role="alert" style="text-align:center;" th:if="${not #strings.isEmpty(response.badRequests)}">
+ 			  <a href="#" class="alert-link" th:text="${response.badRequests}" ></a>
+		</div>
+		<div th:if="${#strings.isEmpty(response.badRequests)}" style="display: block">
+			<ul class="list-group"  >
+			  <li class="list-group-item disabled">Student</li>
+			  <li class="list-group-item" ><span >ID: </span><span th:text="${response.student.id}" ></span></li>
+			  <li class="list-group-item"><span >Name: </span><span th:text="${response.student.name}" ></span></li>
+			  <li class="list-group-item"><span >Address (street): </span><span th:text="${response.student.address.street}" ></span></li>
+			  <li class="list-group-item"><span>Address (city): </span><span th:text="${response.student.address.city}" ></span></li>
+			  <li class="list-group-item"><span>Address (Poste Code): </span><span th:text="${response.student.address.posteCode}" ></span></li>
+			
+			</ul>
+			<br>
+			<ul class="list-group">
+			  <li class="list-group-item disabled">Exam</li>
+			  <li class="list-group-item" ><span >Code: </span><span th:text="${response.exam.code}" ></span></li>
+			  <li class="list-group-item"><span >Title: </span><span th:text="${response.exam.title}" ></span></li>
+			</ul>
+			<br>
+			<ul class="list-group" >
+			  <li class="list-group-item disabled">Date</li>
+			  <li class="list-group-item" ><span th:text="${response.date}" ></span></li>
+			</ul>
+		</div>
+  </div>
+</div>
+
+
+<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

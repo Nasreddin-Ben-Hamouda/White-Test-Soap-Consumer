@@ -1,0 +1,111 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="com/whitetest/soap/data/models" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="com/whitetest/soap/data/models" targetNamespace="com/whitetest/soap/data/models">
+<wsdl:types>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="com/whitetest/soap/data/models">
+<xsd:element name="StudentRequest">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element name="studentId" type="xsd:int"/>
+<xsd:element name="examCode" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="WhiteTestResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element name="student" type="tns:Student"/>
+<xsd:element name="exam" type="tns:Exam"/>
+<xsd:element name="date" type="xsd:dateTime"/>
+<xsd:element name="badRequests" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="ExamsRequest">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element name="exams" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="ExamsResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="unbounded" name="exams" type="tns:Exam"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:complexType name="Student">
+<xsd:sequence>
+<xsd:element name="id" type="xsd:int"/>
+<xsd:element name="name" type="xsd:string"/>
+<xsd:element name="address" type="tns:Address"> </xsd:element>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="Address">
+<xsd:sequence>
+<xsd:element name="street" type="xsd:string"/>
+<xsd:element name="city" type="xsd:string"/>
+<xsd:element name="poste-code" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:complexType name="Exam">
+<xsd:sequence>
+<xsd:element name="code" type="xsd:string"/>
+<xsd:element name="title" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:schema>
+</wsdl:types>
+<wsdl:message name="ExamsRequest">
+<wsdl:part element="tns:ExamsRequest" name="ExamsRequest"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="ExamsResponse">
+<wsdl:part element="tns:ExamsResponse" name="ExamsResponse"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="StudentRequest">
+<wsdl:part element="tns:StudentRequest" name="StudentRequest"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="WhiteTestResponse">
+<wsdl:part element="tns:WhiteTestResponse" name="WhiteTestResponse"> </wsdl:part>
+</wsdl:message>
+<wsdl:portType name="WhiteTestCheck">
+<wsdl:operation name="Exams">
+<wsdl:input message="tns:ExamsRequest" name="ExamsRequest"> </wsdl:input>
+<wsdl:output message="tns:ExamsResponse" name="ExamsResponse"> </wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="Student">
+<wsdl:input message="tns:StudentRequest" name="StudentRequest"> </wsdl:input>
+</wsdl:operation>
+<wsdl:operation name="WhiteTest">
+<wsdl:output message="tns:WhiteTestResponse" name="WhiteTestResponse"> </wsdl:output>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="WhiteTestCheckSoap11" type="tns:WhiteTestCheck">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="Exams">
+<soap:operation soapAction=""/>
+<wsdl:input name="ExamsRequest">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="ExamsResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="Student">
+<soap:operation soapAction=""/>
+<wsdl:input name="StudentRequest">
+<soap:body use="literal"/>
+</wsdl:input>
+</wsdl:operation>
+<wsdl:operation name="WhiteTest">
+<soap:operation soapAction=""/>
+<wsdl:output name="WhiteTestResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="WhiteTestCheckService">
+<wsdl:port binding="tns:WhiteTestCheckSoap11" name="WhiteTestCheckSoap11">
+<soap:address location="http://localhost:8000/tekup"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>
